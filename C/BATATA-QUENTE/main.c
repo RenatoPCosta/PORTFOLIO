@@ -22,7 +22,7 @@ int novojogo(int *batata,int *posicao, int *primeiro,int *jogadores){
     return 0;
 }
 int erro(int *batata,int *posicao, int *primeiro,int *jogadores){
-    system("color 09");
+    system("color 05");
     system("cls");
     for(int j=0;j<=2;j++){
         printf("\nOPÇÃO INVÁLIDA");
@@ -32,7 +32,6 @@ int erro(int *batata,int *posicao, int *primeiro,int *jogadores){
     return 0;
 }
 int venceu(int *batata,int *posicao, int *primeiro,int *jogadores){
-    Sleep(2500);
     system("color 02");
     system("cls");
     printf("\n\tVOCÊ VENCEU\n");
@@ -60,8 +59,17 @@ int jogo(int *batata,int *posicao, int *primeiro,int *jogadores){
                 printf("queimou\n\n");
                 perdeu(batata,posicao,primeiro,jogadores);
             }else {
-                system("color 09");
+                system("color 01");
                 printf("queimou\n\n");
+                for(int i=0;i<5;i++){
+                Sleep(150);
+                system("color 02");
+                Sleep(100);
+                system("color 01");
+                Sleep(50);
+                system("color 02");
+                Sleep(25);
+                }
                 venceu(batata,posicao,primeiro,jogadores);
             }
         }else {
@@ -90,7 +98,7 @@ int randm(int *batata,int *posicao, int *primeiro,int *jogadores){
     system("cls");
     system("color 02");
     printf("BATATA-QUENTE - O CONFRONTO FINAL\n\tDESENVOLVEDOR: RENATO COSTA\n\n");
-    Sleep(300);
+    Sleep(200);
     printf("REGRA: Passe a batata antes que ela fique quente, na sua vez aperte qualquer botão\n\tQuantos jogadores?\n\t(de 3 ou 4):  ");
         fflush(stdin);
         scanf("%d",&aux1);
@@ -100,24 +108,24 @@ int randm(int *batata,int *posicao, int *primeiro,int *jogadores){
     srand(time(NULL));
     *batata = rand();
     while(*batata>5 && *batata!=0){
-        *batata-=3;
+        *batata-=4;
             (*batata<0 && *batata!=0)?*batata+=3:*batata;
     }
     *posicao = rand();
     while(*posicao>11 && *posicao!=0){
-        *posicao-=2;
+        *posicao-=3;
         (*posicao<0 && *posicao!=0)?*posicao+=7:*posicao;
     }
     *primeiro = rand();
     while(*primeiro>*jogadores && *primeiro!=0){
-        *primeiro-=3;
-        (*primeiro<0 && *primeiro!=0)?*primeiro+=2:*primeiro;
+        *primeiro-=4;
+        (*primeiro<0 && *primeiro!=0)?*primeiro+=3:*primeiro;
     }
     jogo(batata,posicao,primeiro,jogadores);
     return 0;
 }
 int main(){
-    system("TITLE BATATA-QUENTE - O CONFRONTO FINAL \nv0.1");
+    system("TITLE BATATA-QUENTE - O CONFRONTO FINAL \nv0.2");
     HWND console = GetConsoleWindow();
     ShowWindow(console, SW_MAXIMIZE);
     setlocale(LC_ALL,"");
