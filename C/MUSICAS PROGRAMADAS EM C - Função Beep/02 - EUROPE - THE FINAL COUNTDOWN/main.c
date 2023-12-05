@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
-float sb = 2000; //semibreve
+float sb = 1700; //semibreve
 float m;         //minima
 float sm;        //seminima
 float c;         //colcheia
@@ -46,16 +46,7 @@ int main()
     Beep(A,m);
 
 
-
-
 //**********************************************
-
-
-
-
-
-
-
 /*
     Sleep();
     Beep(,);

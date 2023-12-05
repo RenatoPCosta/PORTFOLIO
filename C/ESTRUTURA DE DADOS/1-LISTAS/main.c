@@ -19,7 +19,6 @@ NO* incluir(NO* pessoa){
     char cpf_t[15];
     system("cls");
     printf("digite nome: ");
-        setlocale(LC_ALL,"Portuguese_Brazil");
         fflush(stdin);
         scanf("%149[^\n]",nome_t);
         fflush(stdin);
@@ -32,18 +31,29 @@ NO* incluir(NO* pessoa){
     NO_NOVO->proximo=pessoa;
     return NO_NOVO;
 }
-
-
-
 NO* retirar(NO* pessoa){
-        /*
-            em criação
-        */
+    NO* anterior = NULL;
+    NO* aux = pessoa;
+    char nomeaux[149];
+    printf("digite o nome para retirar: \n");
+        fflush(stdin);
+        scanf("%149[^\n]",nomeaux);
+        fflush(stdin);
+        while(aux !=NULL && strcmp(aux->nome,nomeaux)){
+            anterior = aux;
+            aux = aux->proximo;
+        }
+        if(aux == NULL){
+            return pessoa;
+        }
+        if(anterior == NULL){
+            pessoa = aux->proximo;
+        }else{
+            anterior->proximo = aux->proximo;
+        }
+    free(aux);
     return pessoa;
-};
-
-
-
+}
 int busca(NO* pessoa){
     NO* aux;
     system("cls");
@@ -64,11 +74,10 @@ int busca(NO* pessoa){
     free(aux);
     system("pause");
     return 0;
-};
+}
 int imprime(NO *pessoa){
     NO *aux = pessoa;
     system("cls");
-    setlocale(LC_ALL,"Portuguese_Brazil");
     while(aux!=NULL){
         printf("nome: %s",aux->nome);
         printf("\nCPF: %s\n\n",aux->CPF);
@@ -89,11 +98,11 @@ NO* limpa(NO* pessoa){
     return aux;
 }
 int menu(NO* pessoa){
-    setlocale(LC_ALL,"Portuguese");
     int opM;
     system("cls");
-    printf("SELECIONE OPÇÃO DE CADASTRO: \n");
-    printf("1 - Cadastro de novo usuário     \n2 - Retirar usuário     \n3 - Buscar usuário     \n4 - mostrar lista     \n5 - limpar lista     \n6 - sair\n\n");
+    printf("SELECIONE: \n");
+    printf("aqui estÃ¡ uma linha de cÃ³digo, teste Ã§ e Äƒ");
+    printf("1 - NOVO CADASTRO     \n2 - RETIRAR CADASTRO     \n3 - BUSCAR     \n4 - MOSTRAR LISTA     \n5 - LIMPAR LISTA     \n6 - SAIR\n\n");
     printf("escolha: ");
         fflush(stdin);
             scanf("%d",&opM);
@@ -117,8 +126,8 @@ int menu(NO* pessoa){
                 return 0;
             break;
             default:
-                printf("\n\nopção inválida");
-                Sleep(300);
+                printf("\n\nopÃ§Äƒo invÃ¡lida");
+                Sleep(350);
                 system("cls");
                 menu(pessoa);
         }
@@ -127,6 +136,7 @@ int menu(NO* pessoa){
 }
 int main(){
     system("TITLE LISTAS LIGADAS ");
+    setlocale(LC_ALL,"Portuguese");;
     system("color 02");
     NO *pessoa;
     pessoa=inicia();
